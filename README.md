@@ -109,7 +109,6 @@ Base path: `http://localhost:8080/back`
 
 **Response (200)**:
 ```json
-[
   {
     "idPrice": 1,
     "productId": 35455,
@@ -118,7 +117,6 @@ Base path: `http://localhost:8080/back`
     "endDate": "2020-12-31 23:59:59",
     "price": 35.5,
     "brandId": 1
-}
 ]
 ```
 **Response (404)**:
