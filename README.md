@@ -80,20 +80,20 @@ src/main/java/com/price/be
 
 ---
 
-
 ## API Endpoints
 
 Base path: `http://localhost:8080/back`
 
 ### `GET /prices`
 
-Given:
+#### Request Parameters
 - **Product** (`productId`) — *Number*
 - **Brand** (`brandId`) — *Number*
 - **Application Date** (`date`) — *String* in the format **`yyyy-MM-dd HH:mm:ss`**
 
+#### Responses
 - **200 OK**  
-  The request was successful. It returns the **applicable price rate**.
+  The request was successful. Returns the **applicable price rate**.
 
 - **400 Bad Request**  
   One or more required parameters (`productId`, `brandId`, `date`) were missing or incorrectly formatted.
@@ -101,10 +101,11 @@ Given:
 - **404 Not Found**  
   No applicable price was found for the given parameters.
 
-✨ Business rules:
+#### Business Rules
 - If **multiple rates** are valid for the same date, the one with the **highest priority** is automatically selected.  
-- If **no rate** matches the given parameters, the service responds with **HTTP 404 – Not Found**.
+- If **no rate** matches the given parameters, the service responds with **HTTP 404 – Not Found**.  
 - If **any required field** is missing, the service responds with **HTTP 400 – Bad Request**.
+
 
 **Response (200)**:
 ```json
