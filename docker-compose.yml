@@ -1,0 +1,10 @@
+services:
+  newnowapp-be:
+    image: priceservice-be:0.0.1
+    container_name: PriceService-BE
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"
