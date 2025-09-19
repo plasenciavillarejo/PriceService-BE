@@ -117,29 +117,25 @@ Base path: `http://localhost:8080/back`
     "endDate": "2020-12-31 23:59:59",
     "price": 35.5,
     "brandId": 1
-]
+  }
 ```
 **Response (404)**:
 ```json
-[
   {
     "localDateTime": "2025-09-17 23:04:58",
     "message": "No price was found associated with the entered parameters. Please try again with different values.",
     "code": 404
-}
-]
+  }
+
 ```
 
 **Response (400)**:
 ```json
-[
 {
     "localDateTime": "2025-09-19 08:18:08",
     "message": "Required parameter 'brandId' is not present.",
     "code": 400
 }
-
-]
 ```
 
 ---
