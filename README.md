@@ -20,11 +20,14 @@ And return the following output:
 
 ## Overview
 
-- **Language / Platform**: Java 21, Spring Boot 3.5.5
+- **Language / Platform**: Java 21, Spring Boot 3.5.5  
 - **Style**: Reactive controllers (`Mono<>`) with blocking work offloaded to `boundedElastic`  
 - **Architecture**: Hexagonal (Ports & Adapters)  
 - **Persistence**: H2 (dev), JPA adapter (blocking)  
-- **Build/Run**: Maven
+- **Build Tool**: Maven (via Maven Wrapper)  
+  - Maven version: **3.9.11**  
+  - Wrapper version: **3.3.4**
+
 
 ## 📂 Project Structure:
 <pre>
@@ -45,8 +48,6 @@ src/main/java/com/price/be
 ├── infrastructure.web.request.dto
 └── infrastructure.web.response.dto
 </pre>
-
-
 
 ## Design Decisions
 
@@ -80,12 +81,11 @@ src/main/java/com/price/be
 
 ---
 
-## 🚀 How to Run
+### 🚀 Run locally
 
 ```bash
 ./mvnw clean spring-boot:run
 ```
-
 
 ## API Endpoints
 
