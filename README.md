@@ -175,8 +175,9 @@ curl -G "http://localhost:8080/back/prices" \
 ```
 
 
-
-
+# Steps to follow for execution within a container
+- 1.- Run Docker Compose with the following command.
+  - docker compose up --build -d
 
 
 
