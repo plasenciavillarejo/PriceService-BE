@@ -92,7 +92,14 @@ Given:
 - **Brand** (`brandId`) — *Number*
 - **Application Date** (`date`) — *String* in the format **`yyyy-MM-dd HH:mm:ss`**
 
-It returns the **applicable price rate**.
+- **200 OK**  
+  The request was successful. It returns the **applicable price rate**.
+
+- **400 Bad Request**  
+  One or more required parameters (`productId`, `brandId`, `date`) were missing or incorrectly formatted.
+
+- **404 Not Found**  
+  No applicable price was found for the given parameters.
 
 ✨ Business rules:
 - If **multiple rates** are valid for the same date, the one with the **highest priority** is automatically selected.  
