@@ -53,12 +53,12 @@ src/main/java/com/price/be
 ### 🏗️ Hexagonal Architecture (Ports & Adapters)
 
 - **Domain**
-  - `domain.model` → core entities (e.g., `ImageModel`)
+  - `domain.model` → core entities (e.g., `PriceModel`)
   - `domain.exception` → exceptions (e.g., `NotFoundException`)
 
 - **Application (Ports)**
   - `port.in` → inbound ports (use-cases consumed by web/adapters)
-  - `port.out` → outbound ports (e.g., `ImageRepositoryPort`)
+  - `port.out` → outbound ports (e.g., `PriceRepositoryPort`)
   - `service.impl` → implements business logic; wraps blocking ops in `boundedElastic`
 
 - **Infrastructure (Adapters)**
