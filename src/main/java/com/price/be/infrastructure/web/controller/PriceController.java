@@ -11,30 +11,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.price.be.application.port.in.PriceService;
+import com.price.be.domain.exception.NotFoundException;
 import com.price.be.infrastructure.web.convert.mapper.PriceResponseDtoConvertMapper;
 import com.price.be.infrastructure.web.response.dto.PriceResponseDto;
 
 import reactor.core.publisher.Mono;
-
 
 @RestController
 @RequestMapping(value = "/prices")
 public class PriceController {
 
   private final PriceService priceService;
-  
+
   public PriceController(PriceService priceService) {
     this.priceService = priceService;
   }
-  
+
   @GetMapping
   public Mono<ResponseEntity<PriceResponseDto>> getPrice(
       @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime date,
       @RequestParam("productId") Long productId, @RequestParam("brandId") Long brandId) {
     return priceService.getListPriceModel(date, productId, brandId)
         .map(response -> new ResponseEntity<>(
-        PriceResponseDtoConvertMapper.mapper.convertPriceModelToResponseDto(response), HttpStatus.OK))
-        .defaultIfEmpty(ResponseEntity.notFound().build());
+            PriceResponseDtoConvertMapper.mapper.convertPriceModelToResponseDto(response), HttpStatus.OK))
+        .onErrorMap(NotFoundException.class, e -> e);
+
   }
 
 }

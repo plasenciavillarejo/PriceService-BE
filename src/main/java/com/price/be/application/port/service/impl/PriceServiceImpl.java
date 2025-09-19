@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.price.be.application.port.in.PriceService;
 import com.price.be.application.port.out.PriceRepositoryPort;
+import com.price.be.domain.exception.NotFoundException;
 import com.price.be.domain.model.PriceModel;
 
 import reactor.core.publisher.Mono;
@@ -28,19 +29,20 @@ public class PriceServiceImpl implements PriceService {
 
   @Override
   public Mono<PriceModel> getListPriceModel(LocalDateTime date, Long productId, Long brandId) {
-    return Mono.fromCallable(() -> {
-      LOGGER.info("Receiving request with date: {}, productId: {} and brandId: {} ", date, productId, brandId);
-      return priceRepositoryPort.getFilterByDateAndProductIdAndBandId(date, productId, brandId).stream()
-          .sorted(Comparator.comparing(PriceModel::getPriority).reversed())
-          .collect(Collectors.collectingAndThen(Collectors.toList(), list -> {
-            if(list.size() > 1) {
-              LOGGER.warn("Found {} prices for date={}, productID={}, brandID={}. It is ordered by priority.",
-                  list.size(), date, productId, brandId);
-            }
-            return list;
-          })).stream().findFirst().orElse(null);
-          
-    }).subscribeOn(Schedulers.boundedElastic());
+    LOGGER.info("Receiving request with date: {}, productId: {} and brandId: {} ", date, productId, brandId);
+    return Mono.justOrEmpty(priceRepositoryPort.getFilterByDateAndProductIdAndBandId(date, productId, brandId).stream()
+        .sorted(Comparator.comparing(PriceModel::getPriority).reversed())
+        .collect(Collectors.collectingAndThen(Collectors.toList(), list -> {
+          if (list.size() > 1) {
+            LOGGER.warn("Found {} prices for date={}, productID={}, brandID={}. It is ordered by priority.",
+                list.size(), date, productId, brandId);
+          }
+          return list;
+        })).stream().findFirst().orElse(null))
+        .switchIfEmpty(Mono.error(new NotFoundException(
+            "No price was found associated with the entered parameters. Please try again with different values.")))
+        .subscribeOn(Schedulers.boundedElastic());
+
   }
 
 }
