@@ -146,16 +146,11 @@ Base path: `http://localhost:8080/back`
   - User: test
   - Password: test
 
-# Testing
-- Unit tests → run with ./mvnw test
-- Reactive flows → verified using reactor-test and StepVerifier
-- 
-- **Unit tests**  
-  Controllers are tested in isolation using **WebTestClient** with **Mockito** to mock the `PriceService`.
-
-- **Integration tests**  
-  The full application is tested with **@SpringBootTest** and **WebTestClient**, using an in-memory H2 database (preloaded with sample data).  
-  These tests validate the business rules by checking the expected price for the 5 requested scenarios.
+### Testing
+- Run all tests: `./mvnw test`
+- **Unit tests** → controllers in isolation using WebTestClient + Mockito.  
+- **Integration tests** → full app with @SpringBootTest + WebTestClient + H2 in-memory. Validates 5 business scenarios.  
+- **Reactive flows** → verified using reactor-test and StepVerifier.
 
 
 ## 📦 Postman collections:
@@ -163,6 +158,13 @@ Base path: `http://localhost:8080/back`
 **Execute in Localhost**
 - 1.- *Get price:* http://localhost:8080/back/prices
 
+### Example with curl
+
+```bash
+curl -G "http://localhost:8080/back/prices" \
+  --data-urlencode "date=2020-06-14 10:00:00" \
+  --data-urlencode "productId=35455" \
+  --data-urlencode "brandId=1"
 
 
 
