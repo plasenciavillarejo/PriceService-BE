@@ -1,4 +1,4 @@
-package com.price.be.infrastructure.web.controller;
+package com.price.be;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

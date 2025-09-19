@@ -1,4 +1,4 @@
-package com.price.be.infrastructure.web.controller;
+package com.price.be;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,6 +13,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import com.price.be.application.port.in.PriceService;
 import com.price.be.domain.model.PriceModel;
+import com.price.be.infrastructure.web.controller.PriceController;
 
 import reactor.core.publisher.Mono;
 
