@@ -6,16 +6,16 @@ The service must accept the following input parameters:
 
 - **Application date** (`date`)
 - **Product identifier** (`productId`)
-- **String identifier** (`brandId`)
+- **Associated brand group identifier** (`brandId`)
 
 And return the following output:
 
 - **Product identifier** (`productId`)
-- **String identifier** (`brandId`)
+- **Associated brand group identifier** (`brandId`)
 - **Rate to apply** (`priceList`)
 - **Application dates** (`startDate`, `endDate`)
 - **Final price** (`price`)
-
+  
 ---
 
 ## Overview
@@ -119,6 +119,7 @@ Base path: `http://localhost:8080/back`
     "brandId": 1
   }
 ```
+
 **Response (404)**:
 ```json
   {
@@ -126,7 +127,6 @@ Base path: `http://localhost:8080/back`
     "message": "No price was found associated with the entered parameters. Please try again with different values.",
     "code": 404
   }
-
 ```
 
 **Response (400)**:
@@ -165,7 +165,7 @@ curl -G "http://localhost:8080/back/prices" \
   --data-urlencode "date=2020-06-14 10:00:00" \
   --data-urlencode "productId=35455" \
   --data-urlencode "brandId=1"
-
+```
 
 
 
