@@ -137,12 +137,31 @@ Base path: `http://localhost:8080/back`
     "code": 400
 }
 ```
-
 ---
 
+### 📚 Tools & Consoles
+**Execute in Localhost**
+- H2 Database Console → http://localhost:8080/back/h2-console
+  - Datasource Url: jdbc:h2:mem:storeappdb
+  - User: test
+  - Password: test
+
+# Testing
+- Unit tests → run with ./mvnw test
+- Reactive flows → verified using reactor-test and StepVerifier
+- 
+- **Unit tests**  
+  Controllers are tested in isolation using **WebTestClient** with **Mockito** to mock the `PriceService`.
+
+- **Integration tests**  
+  The full application is tested with **@SpringBootTest** and **WebTestClient**, using an in-memory H2 database (preloaded with sample data).  
+  These tests validate the business rules by checking the expected price for the 5 requested scenarios.
 
 
+## 📦 Postman collections:
 
+**Execute in Localhost**
+- 1.- *Get price:* http://localhost:8080/back/prices
 
 
 
