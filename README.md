@@ -80,6 +80,13 @@ src/main/java/com/price/be
 
 ---
 
+## 🚀 How to Run
+
+```bash
+./mvnw clean spring-boot:run
+```
+
+
 ## API Endpoints
 
 Base path: `http://localhost:8080/back`
