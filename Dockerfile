@@ -1,4 +1,4 @@
-# ---- Stage 1: Build (JDK completo, base Debian, no necesitas apt aquí)
+# ---- Stage 1: Build (JDK completo, base Debian)
 FROM eclipse-temurin:21-jdk AS builder
 WORKDIR /app
 
@@ -16,5 +16,7 @@ RUN apk add --no-cache tzdata
 ENV TZ=Europe/Madrid
 
 COPY --from=builder /app/target/*.jar /app/app.jar
+
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app/app.jar"]
+
+ENTRYPOINT ["java","-jar","-Xmx256M","/app/app.jar"]
